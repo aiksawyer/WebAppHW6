@@ -12,7 +12,7 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs')
 
 ///hide apiKey later
-const apiKey = 'wNNhHJV0lMfl1r1nyXaQr4iB6TeqqwO5';
+const apiKey = '***************';
 console.log(apiKey)
 
 app.get('/', function (req, res) {
