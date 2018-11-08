@@ -2,14 +2,18 @@
 //setting up express and ejs here
 var express = require('express')
 var app = express()
-var ejs = require('ejs')
+var ejs = require('ejs');
+const fs = require('fs');
 
 ///setting up bodyParser
 var request = require('request')
 var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
+let userFile = fs.readFileSync('users.json');
+let userData = JSON.parse(userFile);
+
 
 ///hide apiKey later
 const apiKey = 'wNNhHJV0lMfl1r1nyXaQr4iB6TeqqwO5';
@@ -40,10 +44,9 @@ app.post('/', function(req, res){
       let finalData = JSON.stringify(userData);
       fs.writeFile('users.json', finalData, finished);
       function finished(err) {
-        console.log('file written: '+req.body);
+    
       }
 
-      // render success!
       res.render('signup', {success: "Welcome, new user!"});
     }
     else{
