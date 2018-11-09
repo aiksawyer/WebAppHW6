@@ -16,21 +16,22 @@
       <p>Password</p>
       <input type="password" name="password" placeholder="Password"><br>
       <p>Password</p>
-      <input type="password" name="confirm_password" placeholder="Password Again"><br>
+      <input type="password" name="password2" placeholder="Password Again"><br>
       <input type="submit">
     </form>
 
     <!---checking here-->
     <% if (success !== null){ %>
     <p><%= success %></p>
-    <p>Proceed to <a href="/log">Log In</a>.</p>
+    <p>Proceed to <a href="/log">Login</a>.</p>
     <% } %>
 
     <% if (error !== null){ %>
     <p><%= error %></p>
-    <% } %> 
+    <% } %>
 
     <br>
+
     <p>Existing user? <a href="/log">Log in!</a></p>
 
 

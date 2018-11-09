@@ -6,8 +6,8 @@ var ejs = require('ejs');
 const fs = require('fs');
 
 ///setting up bodyParser
-var request = require('request')
-var bodyParser = require('body-parser')
+var request = require('request');
+var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -27,7 +27,7 @@ app.get('/', function(req, res){
 app.post('/', function(req, res){
   let username = req.body.username;
   let password = req.body.password;
-  let confirmPass = req.body.confirmPass;
+  let password2 = req.body.password2;
   let confirmUser = false;
 
   for (let i=0; i<userData.length; i++){
@@ -39,18 +39,18 @@ app.post('/', function(req, res){
   if (confirmUser){
     res.render('signup', {success: null, error: 'Username already exists, try again!'});
   }else{
-    if (password===confirmPass){
+    if (password === password2){
       userData.push({username: username, password: password});
       let finalData = JSON.stringify(userData);
       fs.writeFile('users.json', finalData, finished);
       function finished(err) {
-    
+        console.log(req.body);
       }
-
       res.render('signup', {success: "Welcome, new user!"});
-    }
-    else{
+    }else{
       res.render('signup', {success: null, error: "Passwords have to be the same!"});
+      console.log(password, password2);
+
     }   
   }
 });
@@ -77,7 +77,7 @@ app.post('/log', function(req, res){
 
   if (gotUser){
     if (password === userData[userIndex].password){
-      res.redirect('/vote');
+      res.redirect('/gif');
     }else{ 
       res.render('log', {error: 'Incorrect password, try again!'});
     }
@@ -87,13 +87,13 @@ app.post('/log', function(req, res){
 
 });
 
-app.get('/', function (req, res) {
+app.get('/gif', function (req, res) {
   res.render('index', {gifUrl: null, error: null});
 })
 
 
 ////the main page here
-app.post('/', function (req, res) {
+app.post('/gif', function (req, res) {
   let search = req.body.search;
   ///user's apiKey goes here
   let url = `http://api.giphy.com/v1/gifs/search?q=${search}&api_key=${apiKey}`
