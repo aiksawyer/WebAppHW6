@@ -16,7 +16,7 @@ let userData = JSON.parse(userFile);
 
 
 ///hide apiKey later
-const apiKey = 'wNNhHJV0lMfl1r1nyXaQr4iB6TeqqwO5';
+const apiKey = '**********';
 console.log(apiKey)
 
 // sign up page here
