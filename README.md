@@ -8,6 +8,8 @@ To set up:
 3. Install node, Express, bodyParser and ejs through Terminal
 4. Get API key from Giphy and replace the "*******" line in app.js file with it
 5. Start the app by "node app.js" command in Terminal
+6. Log in or sign up.
+7. Start using the app to get GIFs.
 
 Some words to test: "applause", "WTF", "no", "cat".
 
